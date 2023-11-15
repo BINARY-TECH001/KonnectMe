@@ -2,8 +2,8 @@
 
 const RootLayout = () => {
   return (
-    <div>
-      RootLayout
+    <div className="w-full md:flex">
+      <TopBar />
     </div>
   )
 }
