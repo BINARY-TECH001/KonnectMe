@@ -1,6 +1,6 @@
 
 import * as z from "zod";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -13,11 +13,14 @@ import { SignupValidation } from "@/lib/validation";
 import Loader from "@/components/shared/Loader";
 import { createUserAccount, signInAccount } from "@/lib/appwrite/api";
 import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutations";
+import { useUserContext } from "@/context/AuthContext";
 
 
 const SignupForm = () => {
 
+  const navigate = useNavigate();
   const { toast } = useToast();
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext()
 
   const { mutateAsync: createUserAccount, isLoading: isCreatingUser } = useCreateUserAccount();
 
@@ -48,6 +51,15 @@ const SignupForm = () => {
     })
 
     if(!session){
+      return toast({ title: ' Sign Up failed. Please try again. ' })
+    }
+
+    const isLoggedIn = await checkAuthUser()
+    if(isLoggedIn){
+      form.reset();
+
+      navigate('/')
+    } else {
       return toast({ title: ' Sign Up failed. Please try again. ' })
     }
   }
