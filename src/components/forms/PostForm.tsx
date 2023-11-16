@@ -18,7 +18,7 @@ import {
 import FileUploader from "../shared/FileUploader";
 
 
-const PostForm = () => {
+const PostForm = ({ post }) => {
     const navigate = useNavigate()
     const formSchema = z.object({
         username: z.string().min(2, {
@@ -72,6 +72,8 @@ const PostForm = () => {
               <FormLabel className="shad-form_label">Add Photos</FormLabel>
               <FormControl>
                 <FileUploader
+                    fieldChange={field.onChange}
+                    mediaUrl={post?.imageUrl}
                 />
               </FormControl>
               <FormMessage className="shad-form_message" />
