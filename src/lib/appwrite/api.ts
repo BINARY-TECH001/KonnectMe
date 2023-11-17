@@ -150,6 +150,16 @@ export async function createPost(post: INewPost) {
     // Convert tags into array
     const tags = post.tags?.replace(/ /g, "").split(",") || [];
 
+    const newPostData = {
+        creator: post.userId,
+        caption: post.caption,
+        imageUrl: fileUrl,
+        imageId: uploadedFile.$id,
+        location: post.location,
+        tags: tags,
+    };
+    
+    console.log("newPostData", newPostData);
     // Create post
     const newPost = await databases.createDocument(
       appwriteConfig.databaseId,
@@ -164,7 +174,6 @@ export async function createPost(post: INewPost) {
         tags: tags,
       }
       );
-      console.log(uploadedFile.$id)
 
     if (!newPost) {
       await deleteFile(uploadedFile.$id);
