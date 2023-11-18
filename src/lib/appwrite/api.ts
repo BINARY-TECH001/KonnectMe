@@ -448,22 +448,38 @@ export async function getRecentPosts() {
 // ============================================================
 
 // ============================== GET USERS
-export async function getUsers(limit?: number) {
-  const queries: any[] = [Query.orderDesc("$createdAt")];
+// export async function getUsers(limit?: number) {
+//   const queries: any[] = [Query.orderDesc("$createdAt")];
 
-  if (limit) {
-    queries.push(Query.limit(limit));
-  }
+//   if (limit) {
+//     queries.push(Query.limit(limit));
+//   }
 
+//   try {
+//     const users = await databases.listDocuments(
+//       appwriteConfig.databaseId,
+//       appwriteConfig.userCollectionId,
+//       queries
+//     );
+
+//     if (!users) throw Error;
+
+//     return users;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
+
+export async function getUsers() {
   try {
     const users = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userCollectionId,
-      queries
+      [Query.orderDesc("$createdAt"), Query.limit(10)],
     );
 
-    if (!users) throw Error;
-
+    if(!users) throw Error
     return users;
   } catch (error) {
     console.log(error);
