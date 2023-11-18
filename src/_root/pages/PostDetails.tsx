@@ -71,7 +71,7 @@ const PostDetails = () => {
         </div>
 
         <div className="w-full">
-          <PostStats post={post} userId={user.id} />
+          <PostStats post={post} userId={user.id} /> 
         </div>
         </div>
       </div>
