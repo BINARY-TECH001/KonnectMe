@@ -37,17 +37,17 @@ const PostForm = ({ post, action }: PostFormProps) => {
        
         // 2. Define a submit handler.
         async function onSubmit(values: z.infer<typeof PostValidation>) {
-          if(post && action ==- "Update"){
+          if(post && action === "Update"){
             const updatedPost = await updatePost({
               ...values,
               postId: post?.imageId,
               imageId: post?.imageId,
-              imageUrl: post?.imageUrl,
+              imageUrl: post?.imageUrl,     
             })
-            if(!updatePost){
+            if(!updatedPost){
               toast({ title: "Please try again!" })
             }
-            return navigate(`/posts/${post.$id}`)
+            return navigate(`/post/${post.$id}`)
           }
 
           const newPost = await createPost({
