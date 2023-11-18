@@ -3,26 +3,26 @@ import "../../styles.css"
 import UserCard from './userCard'
 import { useGetUsers } from '@/lib/react-query/queriesAndMutations'
 import Loader from './Loader'
+import { Models } from 'appwrite'
 
 const TopCreator = () => {
     const { data: creators, isFetching: isUserLoading, isError: isErrorCreators} = useGetUsers();
 
-    console.log(creators)
   return (
-    <div className='mt-10 p-4'>
-      <h3 className='h3-bold md:h2-bold text-left w-full'> Top Creators </h3>
-      <div className="grid-container">
+    <div className='mt-10 p-5'>
+      <h3 className='h3-bold md:h2-bold text-left w-full mb-4'> Top Creators </h3>
+      <div className="user-container">
       {
             isUserLoading && !creators ? (
               <Loader />
             ) : (
-              <ul className="flex flex-col flex-1 gap-9 w-full">
+              <div className="grid 2xl:grid-cols-2 gap-6">
                 {
-                  posts?.documents.map((post: Models.Document) => (
-                    <PostCard post={post} key={post.caption} />
+                  creators?.documents.map((creator: Models.Document) => (
+                    <UserCard user={creator} key={creator.name} />
                   ))
                 }
-              </ul>
+              </div>
             )
           }
       </div>
