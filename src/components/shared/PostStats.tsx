@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDeleteSavedPost, useGetCurrentUser, useLikePost, useSavePost } from "@/lib/react-query/queriesAndMutations";
 import { Models } from "appwrite"
 import { checkIsLiked } from "@/lib/utils";
-import { set } from "zod";
 import { deleteSavedPost } from "@/lib/appwrite/api";
 import Loader from "./Loader";
 
@@ -19,17 +18,16 @@ const PostStats = ({ post, userId } : PostStatsProps) => {
 
     const { mutate: likePost } = useLikePost()
     const { mutate: savePost, isPending : isSavingPost } = useSavePost();
-    const { mutate: deleteSavedPost, isPending : isDeletingPost } = useDeleteSavedPost()
+    const { mutate: deleteSavedPost, isPending : isDeletingSaved } = useDeleteSavedPost()
 
     const { data: currentUser } = useGetCurrentUser()
     const savedPostRecord = currentUser?.save.find(
         (record: Models.Document) => record.post.$id === post.$id
       );
-
-    useEffect(() => {
-        setIsSaved(!!savedPostRecord) //same as below 👇
-        // setIsSaved(savedPostRecord ? true : false)
-    }, [currentUser])
+    
+      useEffect(() => {
+        setIsSaved(!!savedPostRecord);
+      }, [currentUser]);
 
     const handleLikePost = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -53,8 +51,8 @@ const PostStats = ({ post, userId } : PostStatsProps) => {
             setIsSaved(false)
             deleteSavedPost(savedPostRecord.$id)
         } else{
-            savePost({ postId: post.$id, userId })
-            setIsSaved(true)  
+            savePost({ userId: userId, postId: post.$id });
+            setIsSaved(true);  
         }
 
     }
@@ -77,7 +75,7 @@ const PostStats = ({ post, userId } : PostStatsProps) => {
       </div>
 
       <div className="flex gap-2">
-      {isSavingPost || isDeletingPost ? <Loader /> : 
+      {isSavingPost || isDeletingSaved ? <Loader /> : 
       <img 
             src={isSaved 
                 ? "/assets/icons/saved.svg"
