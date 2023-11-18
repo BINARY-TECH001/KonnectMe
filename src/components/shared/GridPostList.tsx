@@ -2,6 +2,7 @@ import { useUserContext } from "@/context/AuthContext"
 import { Models } from "appwrite"
 import { type } from "os"
 import { Link } from "react-router-dom"
+import PostStats from "./PostStats"
 
 
 type GridPostListProps ={
@@ -13,7 +14,7 @@ type GridPostListProps ={
 const GridPostList = ({ posts, showUser = true, showStats = true }:GridPostListProps) => {
     const { user } = useUserContext()
   return (
-    <ul className="grid-container">
+    <ul className="grid-container mt-3 ">
         {posts.map((post) => (
             <li key={post.$id} className="relative min-w-80 h-80">
                 <Link to={`/post/${post.$id}`} className="grid-post_link">
@@ -26,13 +27,18 @@ const GridPostList = ({ posts, showUser = true, showStats = true }:GridPostListP
 
                 <div className="grid-post_user">
                     {showUser && (
-                        <div className="flex">
+                        <div className="flex items-center justify-start flex-1 gap-2">
                             <img 
                                 src={post?.creator.imageUrl}
                                 alt="user" 
                                 className="h-8 w-8 rounded-full"
                             />
+                            <p className="line-clamp-1"> {post.creator.name} </p>
                         </div>
+                    )}
+
+                    {showStats && (
+                        <PostStats post={post} userId={user.id}/>
                     )}
                 </div>
             </li>
