@@ -1,3 +1,4 @@
+import PostStats from "@/components/shared/PostStats"
 import { Button } from "@/components/ui"
 import { useUserContext } from "@/context/AuthContext"
 import { useGetPostById } from "@/lib/react-query/queriesAndMutations"
@@ -43,7 +44,7 @@ const PostDetails = () => {
             </div>
             </Link>
 
-            <div className="flex-center gap-4">
+            <div className="flex-center">
               <Link to={`/update-post/${post?.$id}`}>
                 {user.id !== post?.creator.$id && "hidden"}
                 <img src="/assets/icons/edit.svg" alt="edit" width={24} height={24} />
@@ -58,6 +59,20 @@ const PostDetails = () => {
               </Button>
             </div>
           </div>
+
+          <hr className="border w-full border-dark-4/80"/>
+          <div className="flex flex-col flex-1 small-medium lg:base-regular">
+            <p> {post?.caption} </p>
+            <ul className="flex gap-1 mt-2">
+                { post?.tags.map((tag:string) =>(
+                    <li key={tag} className="text-light-3"> #{tag} </li>
+                )) }
+            </ul>
+        </div>
+
+        <div className="w-full">
+          <PostStats post={post} userId={user.id} />
+        </div>
         </div>
       </div>
      )}
