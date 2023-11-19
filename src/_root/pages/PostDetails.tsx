@@ -32,7 +32,7 @@ const PostDetails = () => {
                 <img 
                     src={post?.creator?.imageUrl || '/assets/icons/profile-placeholder.svg'} 
                     alt="creator"
-                    className="rounded-full w-8 h-8 lg:h-12 lg:h-12" 
+                    className="rounded-full w-12 h-8 lg:h-12 lg:h-12" 
                 />
             <div className="flex flex-col">
                 <p className="base-medium lg:body-bold text-light-1"> {post?.creator.name} </p>
