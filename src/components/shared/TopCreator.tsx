@@ -9,7 +9,7 @@ const TopCreator = () => {
     const { data: creators, isFetching: isUserLoading, isError: isErrorCreators} = useGetUsers();
 
   return (
-    <div className='mt-10 p-5'>
+    <div className='mt-10 p-5 lg:block hidden'>
       <h3 className='h3-bold md:h2-bold text-left w-full mb-4'> Top Creators </h3>
       <div className="user-container">
       {
