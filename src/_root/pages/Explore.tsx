@@ -11,14 +11,14 @@ const Explore = () => {
   const { ref, inView } = useInView()
   const [searchValue, setSearchValue] = useState("")
   const debounceValue = useDebounce(searchValue, 500)
-  const {data:posts, fetchNextPage, hasNextPage } = useGetPosts()
+  const { data: posts, fetchNextPage, hasNextPage } = useGetPosts()
   const { data: searchedPosts, isfetching: isSearchfetching } = useSearchPosts(debounceValue)
 
-  useEffect(()=> {
+  useEffect(() => {
     if (inView && !searchValue) fetchNextPage()
   }, [inView, searchValue])
 
-  if(!posts){
+  if (!posts) {
     return (
       <div className="flex-center w-full h-full">
         <Loader />
@@ -26,20 +26,20 @@ const Explore = () => {
     )
   }
   const shouldShowSearchResult = searchValue !== ""
-  const shouldShowPosts = !shouldShowSearchResult  && posts?.pages.every((item) =>  item.documents.length === 0)
-  
+  const shouldShowPosts = !shouldShowSearchResult && posts?.pages.every((item) => item.documents.length === 0)
+
   return (
     <div className='explore-container'>
       <div className="explore-inner_container">
         <h2 className="h3-bold md:h2-bold w-full"> Search Posts </h2>
         <div className="flex gap-1 px-4 w-full rounded-lg bg-dark-4">
-          <img 
-            src="/assets/icons/search.svg" 
-            alt="search" 
+          <img
+            src="/assets/icons/search.svg"
+            alt="search"
             width={24}
             height={24}
           />
-          <Input 
+          <Input
             type='text'
             placeholder='Search'
             className='explore-search'
@@ -54,11 +54,11 @@ const Explore = () => {
 
         <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
           <p className="small-medium text-light-2 md:base-medium"> All </p>
-          <img 
-            src="/assets/icons/filter.svg" 
+          <img
+            src="/assets/icons/filter.svg"
             alt="filter"
             height={20}
-            width={20} 
+            width={20}
           />
         </div>
       </div>
@@ -74,7 +74,7 @@ const Explore = () => {
         ) :
           posts.pages.map((item, index) => (
             <GridPostList key={`page-${index}`} posts={item.documents} />
-        ))}
+          ))}
       </div>
 
       {hasNextPage && !searchValue && (

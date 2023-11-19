@@ -5,14 +5,19 @@ import { Link } from "react-router-dom"
 import PostStats from "./PostStats"
 
 type PostCardProps ={
-    post: Models.Document
+    posts: Models.Document
 }
 
-const PostCard = ({ post }: PostCardProps) => {
+const PostCard = ({ posts }: PostCardProps) => {
     const { user } = useUserContext()
-    if(!post.creator) return;
+    console.log(posts)
+
+    // if(!posts.creator) return;
+
   return (
-    <div className="post-card">
+    <>
+    {posts.map((post) => (
+    <div className="post-card mb-4">
       <div className="flex-between">
         <div className="flex items-center gap-3">
             <Link to={`/profile/${post.creator.$id}`}>
@@ -51,7 +56,9 @@ const PostCard = ({ post }: PostCardProps) => {
         <img className="rounded-lg" src={post.imageUrl || '/assets/icons/profile-placeholder.svg'} alt="profile" />
       </Link>
       <PostStats post={post} userId={user.id} />
-    </div>
+      </div>
+      ))}
+    </>
   )
 }
 

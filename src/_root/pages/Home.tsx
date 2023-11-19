@@ -1,12 +1,12 @@
 import Loader from "@/components/shared/Loader"
 import PostCard from "@/components/shared/PostCard"
-import { useGetUsers } from "@/lib/react-query/queriesAndMutations"
+import { useGetPosts, useGetUsers } from "@/lib/react-query/queriesAndMutations"
 import { Models } from "appwrite"
 
 
 
 const Home = () => {
-  const { data: posts, isFetching: isPostLoading, isError: isErrorPosts} = useGetUsers()
+  const { data: posts, isFetching: isPostLoading, isError: isErrorPosts} = useGetPosts()
 
   return (
     <div className="flex flex-1">
@@ -16,10 +16,10 @@ const Home = () => {
           {isPostLoading && !posts ? (
             <Loader />
           ) : (
-            <ul className="flex flex-col flex-1 gap-9 w-full ">
-              {posts?.documents.map((post: Models.Document) => (
-                <li key={post.$id} className="flex justify-center w-full">
-                  <PostCard post={post} />
+            <ul className="flex flex-col flex-1 gap-9 w-full">
+              {posts?.pages.map((post: Models.Document) => (
+                <li key={post.$id} >
+                  <PostCard posts={post.documents} />
                 </li>
               ))}
             </ul>
