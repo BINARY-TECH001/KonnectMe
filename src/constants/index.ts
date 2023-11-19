@@ -20,9 +20,19 @@ export const sidebarLinks = [
       label: "Saved",
     },
     {
+      imgURL: "/assets/icons/chat.svg",
+      route: "/chat",
+      label: "Chats",
+    },
+    {
       imgURL: "/assets/icons/gallery-add.svg",
       route: "/create-post",
       label: "Create Post",
+    },
+    {
+      imgURL: "/assets/icons/setting.svg",
+      route: "/setting",
+      label: "Settings",
     },
   ];
   
@@ -46,5 +56,10 @@ export const sidebarLinks = [
       imgURL: "/assets/icons/gallery-add.svg",
       route: "/create-post",
       label: "Create",
+    },
+    {
+      imgURL: "/assets/icons/chat.svg",
+      route: "/chat",
+      label: "Chats",
     },
   ];
