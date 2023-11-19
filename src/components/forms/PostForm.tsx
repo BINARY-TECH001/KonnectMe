@@ -24,6 +24,8 @@ const PostForm = ({ post, action }: PostFormProps) => {
     const { user } = useUserContext()
     const { toast } = useToast()
     const navigate = useNavigate()
+
+    console.log(post)
         // 1. Define your form.
         const form = useForm<z.infer<typeof PostValidation>>({
           resolver: zodResolver(PostValidation),

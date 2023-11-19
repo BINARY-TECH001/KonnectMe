@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDeleteSavedPost, useGetCurrentUser, useLikePost, useSavePost } from "@/lib/react-query/queriesAndMutations";
 import { Models } from "appwrite"
-import { checkIsLiked } from "@/lib/utils";
+// import { checkIsLiked } from "@/lib/utils";
 import { set } from "zod";
 import { deleteSavedPost } from "@/lib/appwrite/api";
 import Loader from "./Loader";
@@ -12,10 +12,19 @@ type PostStatsProps ={
 }
 
 const PostStats = ({ post, userId } : PostStatsProps) => {
+
+    const checkIsLiked = (likeList: string[], userId: string) => {
+        return likeList.includes(userId);
+      };
+
     const likesList = post?.likes.map((user: Models.Document) => user.$id);
+
+    console.log(post)
 
     const [likes, setLikes] = useState(likesList)
     const [isSaved, setIsSaved] = useState(false)
+
+    console.log(likes)
 
     const { mutate: likePost } = useLikePost()
     const { mutate: savePost, isPending : isSavingPost } = useSavePost();

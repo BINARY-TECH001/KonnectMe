@@ -9,7 +9,7 @@ import { Link, useParams } from "react-router-dom"
 
 const PostDetails = () => {
   const { id } = useParams()
-  const { data: post, isPending } = useGetPostById(id ||"")
+  const { data: post, isFetching:isFetchingPost } = useGetPostById(id ||"")
 
   const {user} = useUserContext()
 
@@ -19,7 +19,7 @@ const PostDetails = () => {
 
   return (
     <div className="post_details-container">
-     {isPending ? <Loader /> : (
+     {isFetchingPost ? <Loader /> : (
       <div className="post_details-card">
         <img 
           src={post?.imageUrl}
@@ -46,8 +46,7 @@ const PostDetails = () => {
 
             <div className="flex-center">
               <Link to={`/update-post/${post?.$id}`}>
-                {user.id !== post?.creator.$id && "hidden"}
-                <img src="/assets/icons/edit.svg" alt="edit" width={24} height={24} />
+                <img src="/assets/icons/edit.svg" alt="edit" width={24} height={24} className={`btn ${user.id !== post?.creator.$id && "hidden"}`}/>
               </Link>
 
               <Button

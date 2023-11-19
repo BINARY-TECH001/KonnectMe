@@ -17,7 +17,7 @@ const PostCard = ({ posts }: PostCardProps) => {
   return (
     <>
     {posts.map((post) => (
-    <div className="post-card mb-4">
+    <div className="post-card mb-4" key={post?.caption}>
       <div className="flex-between">
         <div className="flex items-center gap-3">
             <Link to={`/profile/${post.creator.$id}`}>
