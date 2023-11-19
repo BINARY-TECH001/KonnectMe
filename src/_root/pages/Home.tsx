@@ -18,15 +18,17 @@ const Home = () => {
           ) : (
             <div className="lg:hidden flex justify-between items-center w-full">
               {posts?.pages.map((post: Models.Document) => (
-                <li key={post.$id} >
+                <div key={post.$id} >
                   <Stories posts={post.documents} />
-                </li>
+                </div>
               ))}
 
-              <div className="flex">
+              <div className="flex gap-1 p-2 rounded-full bg-dark-4">
                 <img 
                   src="/assets/icons/arrow-right.svg" 
                   alt="arrow" 
+                  width={24}
+                  height={28}
                 />
               </div>
             </div>
