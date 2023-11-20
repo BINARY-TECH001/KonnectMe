@@ -7,7 +7,7 @@ const EditPost = () => {
   const { id } = useParams()
   const { data: post, isFetching } = useGetPostById(id || "")
 
-  if(isPending) return <Loader />
+  if(isFetching) return <Loader />
   return (
     <div className="flex flex-1">
       <div className="common-container">
