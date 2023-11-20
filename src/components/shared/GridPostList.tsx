@@ -1,6 +1,5 @@
 import { useUserContext } from "@/context/AuthContext"
 import { Models } from "appwrite"
-import { type } from "os"
 import { Link } from "react-router-dom"
 import PostStats from "./PostStats"
 import Loader from "./Loader"
@@ -16,50 +15,30 @@ type GridPostListProps ={
 const GridPostList = ({ posts, isFetching:isFetchingPost, showUser = true, showStats = true }:GridPostListProps) => {
     const { user } = useUserContext()
   return (
-    <div className="post-details-container">
-      { isFetchingPost ? <Loader /> : (
-        <>
-          {
-            posts.map((post) => (
-              <div className="post_details-card ">
-              <img 
-                src={post?.imageUrl}
-                alt="post"
-                 className="post_details-img"
-              />
-              <div className="post_details-info"> 
-                <div className="flex-between w-full">
-                  <Link to={`/profile/${post?.creator.$id}`} className="flex items-center gap-3">
-                      <img 
-                          src={post?.creator?.imageUrl || '/assets/icons/profile-placeholder.svg'} 
-                          alt="creator"
-                          className="rounded-full w-12 h-8 lg:h-12 lg:h-12" 
-                      />
-                  <div className="flex flex-col">
-                      <p className="base-medium lg:body-bold text-light-1"> {post?.creator.name} </p>
-                      <div className="flex-center gap-2 text-light-3">
-                          <p className="subtle-semibold lg:small-regular"> {multiFormatDateString(post?.$createdAt)} </p>
-                          -
-                          <p className="subtle-semibold lg:small-regular"> {post?.location} </p>
-                      </div>
-                  </div>
-                  </Link>
-      
-                  <div className="flex-center">
-                    <Link to={`/update-post/${post?.$id}`}>
-                      <img src="/assets/icons/edit.svg" alt="edit" width={24} height={24} className={`btn ${user.id !== post?.creator.$id && "hidden"}`}/>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            ))
-          }
-        </>
-      )
+    <ul className="grid-container">
+      {posts.map((post) => (
+        <li key={post.$id} className="relative min-w-h0 h-80">
+          <Link to={`/post/${post.$id}`} className="grid-post_link">
+            <img 
+              src={post.imageUrl} 
+              alt="post" 
+              className="h-full w-full object-cover"
+            />
+          </Link>
 
-      }
-    </div>
+          <div className="grid-post_user">
+            {showUser && (
+              <div className="flex items-center justify-start gap-2 flex-1">
+                <img src={post.creator.imageUrl} alt="creator" className="h-8 w-8 rounded-full" />
+                <p line-clamp-1> {post.creator.name} </p>
+              </div>
+            )}
+
+            {showStats && <PostStats post={post} userId={user.id} />}
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }
 export default GridPostList
