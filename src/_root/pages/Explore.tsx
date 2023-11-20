@@ -51,9 +51,15 @@ const Explore = () => {
           />
         </div>
 
-        <div className=" flex items-center w-full">
+        <div className=" flex items-center justify-center w-full gap-3">
             <div className="flex rounded-lg bg-dark-4 p-2">
-              <p> #mountains </p>
+              <p className='small-medium md:base-medium text-slate-600'> #mountains </p>
+            </div>
+            <div className="flex rounded-lg bg-dark-4 p-2">
+              <p className='small-medium md:base-medium text-slate-600'> #tech </p>
+            </div>
+            <div className="flex rounded-lg bg-dark-4 p-2">
+              <p className='small-medium md:base-medium text-slate-600'> #javascript </p>
             </div>
         </div>
       </div>
