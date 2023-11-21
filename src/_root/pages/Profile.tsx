@@ -31,10 +31,10 @@ const Profile = () => {
       </div>
 
       <div className="actionBtn flex gap-3 items-start justify-start">
-        <Button className="bg-[#877EFF]">
+        <Button className="bg-[#877EFF] hover:bg-[#877EFF]">
           Follow
         </Button>
-        <Button className="bg-[#EFEFEF] text-dark-1">
+        <Button className="bg-[#EFEFEF] text-dark-1 hover:bg-[#EFEFEF]">
           Message
         </Button>
       </div>
