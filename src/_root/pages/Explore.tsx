@@ -61,6 +61,9 @@ const Explore = () => {
             <div className="flex rounded-lg bg-dark-4 p-2">
               <p className='small-medium md:base-medium text-slate-600'> #javascript </p>
             </div>
+            <div className="flex rounded-lg bg-dark-4 p-2">
+              <p className='small-medium md:base-medium text-slate-600'> #reactJs </p>
+            </div>
         </div>
       </div>
 
