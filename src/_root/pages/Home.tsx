@@ -1,6 +1,7 @@
 import Loader from "@/components/shared/Loader"
 import PostCard from "@/components/shared/PostCard"
 import Stories from "@/components/shared/Stories"
+import TopCreator from "@/components/shared/TopCreator"
 import { useGetPosts, useGetUsers } from "@/lib/react-query/queriesAndMutations"
 import { Models } from "appwrite"
 
@@ -61,6 +62,7 @@ const Home = () => {
           )}
         </div>
       </div>
+      <TopCreator />
     </div>
   )
 }

@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui"
 
+const iconsData:[string] = [
+  {
+    
+  }
+]
 
 const Profile = () => {
   return (
-    <div className="container_profile flex-col justify-center flex-1 items-start mt-20">
-      <div className="flex justify-center items-start w-full gap-6">
+    <div className="container_profile flex-wrap flex-col md:flex-row justify-center flex-1 items-start mt-20">
+      <div className="flex justify-center sm:flex-col xs:flex-col lg:flex-row items-start w-full gap-6">
         <div className="image h-[150px] w-[150px]">
           <img src="/assets/images/profile.png" alt="user" className="w-full" />
         </div>
@@ -40,15 +45,48 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex relative">
-        <div className="bio">
-          <p> For Developers, By Developers
+      <div className="flex relative flex-col items-start justify-center mt-2 lg:ml-[480px]">
+        <div className="bio w-[628px] h-[103px]">
+          <p>For Developers, By Developers
             💻 Web Development & Coding
             🎥 YouTube - JavaScript Mastery
             ✉️ Business Inquiries - Email or DM </p>
         </div>
-        <div className="course">
+        <div className="course flex gap-5 m-0">
+          <div className="containerI w-[73px]">
+          <div className="iconContainer border-4 border-slate-500 rounded-full">
+            <img src="/assets/images/js.png" alt="icon" className="w-full" />
+          </div>
+          <p className="truncate text-center text-[12px] mt-1">Javscript Masterclass</p>
+          </div>
 
+          <div className="containerI w-[73px]">
+          <div className="iconContainer border-4 border-slate-500 rounded-full">
+            <img src="/assets/images/movie.png" alt="icon" className="w-full"/>
+          </div>
+          <p className="truncate text-center text-[12px] mt-1"> Movie </p>
+          </div>
+
+          <div className="containerI w-[73px]">
+          <div className="iconContainer border-4 border-slate-500 rounded-full">
+            <img src="/assets/images/web3.png" alt="icon" className="w-full" />
+          </div>
+          <p className="truncate text-center text-[12px] mt-1">Web3</p>
+          </div>
+
+          <div className="containerI w-[73px]">
+          <div className="iconContainer border-4 border-slate-500 rounded-full">
+            <img src="/assets/images/masterclass.png" alt="icon" className="w-full" />
+          </div>
+          <p className="truncate text-center text-[12px] mt-1">Masterclass</p>
+          </div>
+
+          <div className="containerI w-[73px]">
+          <div className="iconContainer border-4 border-slate-500 rounded-full">
+            <img src="/assets/images/Faqs.png" alt="icon" className="w-full" />
+          </div>
+          <p className="truncate text-center text-[12px] mt-1"> Faqs </p>
+          </div>
         </div>
       </div>
     </div>
