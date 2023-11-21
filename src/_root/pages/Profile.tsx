@@ -4,16 +4,17 @@ import { Button } from "@/components/ui"
 const Profile = () => {
   return (
     <div className="container_profile flex-col justify-center flex-1 items-start mt-20">
-    <div className="flex justify-center flex-col w-full gap-6">
+    <div className="flex justify-center items-start w-full gap-6">
     <div className="image h-[150px] w-[150px]">
         <img src="/assets/images/profile.png" alt="user" className="w-full"/>
       </div>
 
       <div className="userInfo flex flex-col gap-1">
         <h3 className="h3-bold md:h2-bold text-left w-full"> Binary Tech </h3>
-        <p className="text-[#7878A3] font-[18px]"> @BinaryTech001 </p>
+        {/* <img src="/assets/icons/verify.svg" alt="verify" width={20} height={20} /> */}
+        <p className="text-[#7878A3] font-[18px] mt-1"> @BinaryTech001 </p>
 
-        <div className="postInfo flex gap-3">
+        <div className="postInfo flex gap-3 mt-5">
         <div className="post">
           <span className="font-[20px] text-[#877EFF]"> 978 </span>
           <span className="text-sm"> Posts </span>
