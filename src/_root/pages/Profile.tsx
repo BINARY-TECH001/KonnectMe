@@ -9,7 +9,7 @@ const iconsData: [string] = [
 
 const Profile = () => {
   return (
-    <div className="container_profile flex-wrap flex-col md:flex-row justify-center flex-1 items-start mt-20">
+    <div className="container_profile flex-wrap flex-col md:flex-row justify-center flex-1 items-start mt-10 overflow-scroll custom-scrollbar">
       <div className="flex justify-center sm:flex-col xs:flex-col lg:flex-row items-start w-full gap-6">
         <div className="image h-[150px] w-[150px]">
           <img src="/assets/images/profile.png" alt="user" className="w-full" />
@@ -91,9 +91,12 @@ const Profile = () => {
         </div>
       </div>
 
-      <div>
-        <div className="tabs flex items-center justify-start">
-          <Tabs defaultValue="account" className="w-[400px]">
+      <div className=" flex items-start w-full mt-5 justify-center flex-1">
+        <div className="tabs items-start justify-between w-full">
+       
+
+        <div className="flex-between w-full max-w-5xl mt-16 mb-7">
+        <Tabs defaultValue="account" className="w-[400px]">
             <TabsList>
               <TabsTrigger value="account">Account</TabsTrigger>
               <TabsTrigger value="password">Password</TabsTrigger>
@@ -102,6 +105,16 @@ const Profile = () => {
             <TabsContent value="password">Change your password here.</TabsContent>
           </Tabs>
 
+        <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
+          <p className="small-medium md:base-medium text-light-2">All</p>
+          <img
+            src="/assets/icons/filter.svg"
+            width={20}
+            height={20}
+            alt="filter"
+          />
+        </div>
+      </div>
         </div>
       </div>
     </div>
