@@ -91,17 +91,26 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className=" flex items-start w-full mt-5 justify-center flex-1">
-       
-
+      <div className=" flex items-start w-full justify-center flex-1">
         <div className="flex-between w-full max-w-5xl mt-16 mb-7">
-        <Tabs defaultValue="account" className="w-[400px] ">
-            <TabsList className="bg-dark-3 rounded-xl">
-              <TabsTrigger value="account">Account</TabsTrigger>
-              <TabsTrigger value="password">Password</TabsTrigger>
+        <Tabs defaultValue="account" className="w-[400px]  ">
+            <TabsList className="bg-dark-3 rounded-md flex gap-2 w-full justify-between">
+              <TabsTrigger value="account" className="bg-dark-3 flex gap-2 rounded-md px-3 w-full">
+                <img src="/assets/icons/posts.svg" alt="" className="" width={20} height={20} />
+                posts
+              </TabsTrigger>
+              <TabsTrigger value="password" className="bg-dark-3 flex gap-2 rounded-md px-3 w-full">
+                <img src="/assets/icons/reels.svg" alt="" className="" width={20} height={20} />
+                Reels
+              </TabsTrigger>
+              <TabsTrigger value="tagged" className="bg-dark-3 flex gap-2 rounded-md px-3 w-full">
+                <img src="/assets/icons/tags.svg" alt="" className="" width={20} height={20} />
+                Tagged
+              </TabsTrigger>
             </TabsList>
-            <TabsContent value="account">Make changes to your account here.</TabsContent>
-            <TabsContent value="password">Change your password here.</TabsContent>
+            <TabsContent value="password"> Posts </TabsContent>
+            <TabsContent value="account"> Reels </TabsContent>
+            <TabsContent value="tagged"> Tagged </TabsContent>
           </Tabs>
 
         <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
@@ -115,6 +124,7 @@ const Profile = () => {
         </div>
         </div>
       </div>
+
     </div>
   )
 }
