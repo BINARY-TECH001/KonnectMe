@@ -92,12 +92,11 @@ const Profile = () => {
       </div>
 
       <div className=" flex items-start w-full mt-5 justify-center flex-1">
-        <div className="tabs items-start justify-between w-full">
        
 
         <div className="flex-between w-full max-w-5xl mt-16 mb-7">
-        <Tabs defaultValue="account" className="w-[400px]">
-            <TabsList>
+        <Tabs defaultValue="account" className="w-[400px] ">
+            <TabsList className="bg-dark-3 rounded-xl">
               <TabsTrigger value="account">Account</TabsTrigger>
               <TabsTrigger value="password">Password</TabsTrigger>
             </TabsList>
@@ -114,7 +113,6 @@ const Profile = () => {
             alt="filter"
           />
         </div>
-      </div>
         </div>
       </div>
     </div>
