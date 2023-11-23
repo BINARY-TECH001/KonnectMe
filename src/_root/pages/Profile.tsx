@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-const iconsData:[string] = [
+const iconsData: [string] = [
   {
-    
+
   }
 ]
 
@@ -54,43 +55,55 @@ const Profile = () => {
         </div>
         <div className="course flex gap-5 m-0">
           <div className="containerI w-[73px]">
-          <div className="iconContainer border-4 border-slate-500 rounded-full">
-            <img src="/assets/images/js.png" alt="icon" className="w-full" />
-          </div>
-          <p className="truncate text-center text-[12px] mt-1">Javscript Masterclass</p>
-          </div>
-
-          <div className="containerI w-[73px]">
-          <div className="iconContainer border-4 border-slate-500 rounded-full">
-            <img src="/assets/images/movie.png" alt="icon" className="w-full"/>
-          </div>
-          <p className="truncate text-center text-[12px] mt-1"> Movie </p>
+            <div className="iconContainer border-4 border-slate-500 rounded-full">
+              <img src="/assets/images/js.png" alt="icon" className="w-full" />
+            </div>
+            <p className="truncate text-center text-[12px] mt-1">Javscript Masterclass</p>
           </div>
 
           <div className="containerI w-[73px]">
-          <div className="iconContainer border-4 border-slate-500 rounded-full">
-            <img src="/assets/images/web3.png" alt="icon" className="w-full" />
-          </div>
-          <p className="truncate text-center text-[12px] mt-1">Web3</p>
-          </div>
-
-          <div className="containerI w-[73px]">
-          <div className="iconContainer border-4 border-slate-500 rounded-full">
-            <img src="/assets/images/masterclass.png" alt="icon" className="w-full" />
-          </div>
-          <p className="truncate text-center text-[12px] mt-1">Masterclass</p>
+            <div className="iconContainer border-4 border-slate-500 rounded-full">
+              <img src="/assets/images/movie.png" alt="icon" className="w-full" />
+            </div>
+            <p className="truncate text-center text-[12px] mt-1"> Movie </p>
           </div>
 
           <div className="containerI w-[73px]">
-          <div className="iconContainer border-4 border-slate-500 rounded-full">
-            <img src="/assets/images/Faqs.png" alt="icon" className="w-full" />
+            <div className="iconContainer border-4 border-slate-500 rounded-full">
+              <img src="/assets/images/web3.png" alt="icon" className="w-full" />
+            </div>
+            <p className="truncate text-center text-[12px] mt-1">Web3</p>
           </div>
-          <p className="truncate text-center text-[12px] mt-1"> Faqs </p>
+
+          <div className="containerI w-[73px]">
+            <div className="iconContainer border-4 border-slate-500 rounded-full">
+              <img src="/assets/images/masterclass.png" alt="icon" className="w-full" />
+            </div>
+            <p className="truncate text-center text-[12px] mt-1">Masterclass</p>
+          </div>
+
+          <div className="containerI w-[73px]">
+            <div className="iconContainer border-4 border-slate-500 rounded-full">
+              <img src="/assets/images/Faqs.png" alt="icon" className="w-full" />
+            </div>
+            <p className="truncate text-center text-[12px] mt-1"> Faqs </p>
           </div>
         </div>
       </div>
 
-      
+      <div>
+        <div className="tabs">
+          <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList>
+              <TabsTrigger value="account">Account</TabsTrigger>
+              <TabsTrigger value="password">Password</TabsTrigger>
+            </TabsList>
+            <TabsContent value="account">Make changes to your account here.</TabsContent>
+            <TabsContent value="password">Change your password here.</TabsContent>
+          </Tabs>
+
+        </div>
+      </div>
     </div>
   )
 }
