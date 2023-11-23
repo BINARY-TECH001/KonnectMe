@@ -46,7 +46,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex relative flex-col items-start justify-center mt-2 lg:ml-[480px]">
+      <div className="flex relative flex-col items-start justify-center mt-2 w-full lg:ml-[480px]">
         <div className="bio w-[628px] h-[103px]">
           <p>For Developers, By Developers
             💻 Web Development & Coding
@@ -92,7 +92,7 @@ const Profile = () => {
       </div>
 
       <div>
-        <div className="tabs">
+        <div className="tabs flex items-center justify-start">
           <Tabs defaultValue="account" className="w-[400px]">
             <TabsList>
               <TabsTrigger value="account">Account</TabsTrigger>
