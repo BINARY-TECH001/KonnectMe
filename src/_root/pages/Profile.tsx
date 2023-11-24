@@ -115,9 +115,10 @@ const Profile = () => {
                 Tagged
               </TabsTrigger>
             </TabsList>
+            <div className="flex flex-wrap gap-9 w-full max-w-5xl">
             <TabsContent value="account" className="w-full">  {Userposts?.documents.map((post) => (
                <ul className="grid-container">
-                 <li key={post.$id} className="relative min-w-h0 h-80">
+                 <li key={post.$id} className=" min-w-h0 h-80">
                    <Link to={`/post/${post.$id}`} className="grid-post_link">
                      <img 
                        src={post.imageUrl} 
@@ -140,6 +141,7 @@ const Profile = () => {
              </ul>
             ))}
             </TabsContent>
+            </div>
             <TabsContent value="password"> Reels </TabsContent>
             <TabsContent value="tagged"> Tagged </TabsContent>
           </Tabs>
