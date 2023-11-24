@@ -3,12 +3,13 @@ import Loader from "@/components/shared/Loader"
 import { Button } from "@/components/ui"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useGetPosts, useGetUserPosts } from "@/lib/react-query/queriesAndMutations"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 const Profile = () => {
   const { id } = useParams()
   const { data: Userposts, isFetching } = useGetUserPosts(id || "")
+  console.log(Userposts)
   // const { data: Userposts, isFetching} = useGetPosts()
 
 
@@ -114,11 +115,32 @@ const Profile = () => {
                 Tagged
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="password">  {Userposts?.documents.map((item, index:number) => (
-              <GridPostList key={`page-${index}`} posts={item} isFetching={isFetching} />
+            <TabsContent value="account" className="w-full">  {Userposts?.documents.map((post) => (
+               <ul className="grid-container">
+                 <li key={post.$id} className="relative min-w-h0 h-80">
+                   <Link to={`/post/${post.$id}`} className="grid-post_link">
+                     <img 
+                       src={post.imageUrl} 
+                       alt="post" 
+                       className="h-full w-full object-cover"
+                     />
+                   </Link>
+         
+                   {/* <div className="grid-post_user">
+                     {showUser && (
+                       <div className="flex items-center justify-start gap-2 flex-1">
+                         <img src={post.creator.imageUrl} alt="creator" className="h-8 w-8 rounded-full" />
+                         <p line-clamp-1> {post.creator.name} </p>
+                       </div>
+                     )}
+         
+                     {showStats && <PostStats post={post} userId={user.id} />}
+                   </div> */}
+                 </li>
+             </ul>
             ))}
             </TabsContent>
-            <TabsContent value="account"> Reels </TabsContent>
+            <TabsContent value="password"> Reels </TabsContent>
             <TabsContent value="tagged"> Tagged </TabsContent>
           </Tabs>
 
