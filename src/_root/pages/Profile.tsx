@@ -1,13 +1,19 @@
+import GridPostList from "@/components/shared/GridPostList"
+import Loader from "@/components/shared/Loader"
 import { Button } from "@/components/ui"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useGetPosts, useGetUserPosts } from "@/lib/react-query/queriesAndMutations"
+import { useParams } from "react-router-dom"
 
-const iconsData: [string] = [
-  {
-
-  }
-]
 
 const Profile = () => {
+  const { id } = useParams()
+  const { data: Userposts, isFetching } = useGetUserPosts(id || "")
+  // const { data: Userposts, isFetching} = useGetPosts()
+
+
+  if (isFetching) return <Loader />
+
   return (
     <div className="container_profile flex-wrap flex-col md:flex-row justify-center flex-1 items-start mt-10 overflow-scroll custom-scrollbar">
       <div className="flex justify-center sm:flex-col xs:flex-col lg:flex-row items-start w-full gap-6">
@@ -93,11 +99,11 @@ const Profile = () => {
 
       <div className=" flex items-start w-full justify-center flex-1">
         <div className="flex-between w-full max-w-5xl mt-16 mb-7">
-        <Tabs defaultValue="account" className="w-[400px]  ">
+          <Tabs defaultValue="account" className="w-[400px]  ">
             <TabsList className="bg-dark-3 rounded-md flex gap-2 w-full justify-between">
               <TabsTrigger value="account" className="bg-dark-3 flex gap-2 rounded-md px-3 w-full">
                 <img src="/assets/icons/posts.svg" alt="" className="" width={20} height={20} />
-                posts
+                <span className="text-sm"> Post </span>
               </TabsTrigger>
               <TabsTrigger value="password" className="bg-dark-3 flex gap-2 rounded-md px-3 w-full">
                 <img src="/assets/icons/reels.svg" alt="" className="" width={20} height={20} />
@@ -108,20 +114,23 @@ const Profile = () => {
                 Tagged
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="password"> Posts </TabsContent>
+            <TabsContent value="password">  {Userposts?.documents.map((item, index:number) => (
+              <GridPostList key={`page-${index}`} posts={item} isFetching={isFetching} />
+            ))}
+            </TabsContent>
             <TabsContent value="account"> Reels </TabsContent>
             <TabsContent value="tagged"> Tagged </TabsContent>
           </Tabs>
 
-        <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
-          <p className="small-medium md:base-medium text-light-2">All</p>
-          <img
-            src="/assets/icons/filter.svg"
-            width={20}
-            height={20}
-            alt="filter"
-          />
-        </div>
+          <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
+            <p className="small-medium md:base-medium text-light-2">All</p>
+            <img
+              src="/assets/icons/filter.svg"
+              width={20}
+              height={20}
+              alt="filter"
+            />
+          </div>
         </div>
       </div>
 
