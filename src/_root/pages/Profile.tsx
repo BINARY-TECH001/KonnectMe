@@ -2,21 +2,18 @@ import GridPostList from "@/components/shared/GridPostList"
 import Loader from "@/components/shared/Loader"
 import { Button } from "@/components/ui"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useGetPosts, useGetUserPosts } from "@/lib/react-query/queriesAndMutations"
+import { useGetUserPosts } from "@/lib/react-query/queriesAndMutations"
 import { Link, useParams } from "react-router-dom"
 
 
 const Profile = () => {
   const { id } = useParams()
   const { data: Userposts, isFetching } = useGetUserPosts(id || "")
-  console.log(Userposts)
-  // const { data: Userposts, isFetching} = useGetPosts()
-
 
   if (isFetching) return <Loader />
 
   return (
-    <div className="container_profile flex-wrap flex-col md:flex-row justify-center flex-1 items-start mt-10 overflow-scroll custom-scrollbar">
+    <div className="container_profile flex-wrap md:flex-row justify-center">
       <div className="flex justify-center sm:flex-col xs:flex-col lg:flex-row items-start w-full gap-6">
         <div className="image h-[150px] w-[150px]">
           <img src="/assets/images/profile.png" alt="user" className="w-full" />
@@ -99,7 +96,7 @@ const Profile = () => {
       </div>
 
       <div className=" flex items-start w-full justify-center flex-1">
-        <div className="flex-between w-full max-w-5xl mt-16 mb-7">
+        <div className="w-full max-w-5xl mt-16 mb-7">
           <Tabs defaultValue="account" className="w-[400px]  ">
             <TabsList className="bg-dark-3 rounded-md flex gap-2 w-full justify-between">
               <TabsTrigger value="account" className="bg-dark-3 flex gap-2 rounded-md px-3 w-full">
@@ -115,9 +112,9 @@ const Profile = () => {
                 Tagged
               </TabsTrigger>
             </TabsList>
-            <div className="flex flex-wrap gap-9 w-full max-w-5xl">
-            <TabsContent value="account" className="w-full">  {Userposts?.documents.map((post) => (
-               <ul className="grid-container">
+            <div className=" gap-9 w-full max-w-5xl">
+            <TabsContent value="account" className="">  {Userposts?.documents.map((post) => (
+               <ul className="grid-containe">
                  <li key={post.$id} className=" min-w-h0 h-80">
                    <Link to={`/post/${post.$id}`} className="grid-post_link">
                      <img 
@@ -145,16 +142,6 @@ const Profile = () => {
             <TabsContent value="password"> Reels </TabsContent>
             <TabsContent value="tagged"> Tagged </TabsContent>
           </Tabs>
-
-          <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
-            <p className="small-medium md:base-medium text-light-2">All</p>
-            <img
-              src="/assets/icons/filter.svg"
-              width={20}
-              height={20}
-              alt="filter"
-            />
-          </div>
         </div>
       </div>
 
