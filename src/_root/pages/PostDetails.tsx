@@ -1,15 +1,18 @@
 import PostStats from "@/components/shared/PostStats"
 import { Button } from "@/components/ui"
 import { useUserContext } from "@/context/AuthContext"
-import { useGetPostById } from "@/lib/react-query/queriesAndMutations"
+import { useGetPostById, useGetPosts } from "@/lib/react-query/queriesAndMutations"
 import { multiFormatDateString } from "@/lib/utils"
-import { Loader } from "lucide-react"
+import Loader from '@/components/shared/Loader'
 import { Link, useParams } from "react-router-dom"
+import GridPostList from "@/components/shared/GridPostList"
 
 
 const PostDetails = () => {
   const { id } = useParams()
   const { data: post, isFetching: isFetchingPost } = useGetPostById(id || "")
+  const { data: posts, isFetching:isFetchingRelatedPosts} = useGetPosts()
+
 
   const { user } = useUserContext()
 
@@ -76,7 +79,7 @@ const PostDetails = () => {
         </div>
       )}
 
-      <div className="flex-between w-full max-w-5xl mt-16 mb-7">
+      <div className="flex-between w-full max-w-5xl mt-4 mb-7">
         <h3 className="body-bold md:h3-bold">More Related Posts</h3>
 
         <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
@@ -91,7 +94,11 @@ const PostDetails = () => {
       </div>
 
       <div className="flex flex-wrap gap-9 w-full max-w-5xl">
-        
+        {isFetchingRelatedPosts ? <Loader /> : (
+          posts?.pages.map((item, index) => (
+            <GridPostList key={`page-${index}`} posts={item.documents} isFetching={isFetchingRelatedPosts}/>
+          ))
+        )}
       </div>
 
     </div>
