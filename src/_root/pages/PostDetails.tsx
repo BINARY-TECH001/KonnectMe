@@ -81,22 +81,12 @@ const PostDetails = () => {
 
       <div className="flex-between w-full max-w-5xl mt-4 mb-7">
         <h3 className="body-bold md:h3-bold">More Related Posts</h3>
-
-        <div className="flex-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
-          <p className="small-medium md:base-medium text-light-2">All</p>
-          <img
-            src="/assets/icons/filter.svg"
-            width={20}
-            height={20}
-            alt="filter"
-          />
-        </div>
       </div>
 
       <div className="flex flex-wrap gap-9 w-full max-w-5xl">
         {isFetchingRelatedPosts ? <Loader /> : (
           posts?.pages.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} isFetching={isFetchingRelatedPosts}/>
+            <GridPostList key={`page-${index}`} posts={item.documents} isFetching={isFetchingRelatedPosts} showStats={false}/>
           ))
         )}
       </div>
