@@ -19,21 +19,21 @@ export const sidebarLinks = [
       route: "/saved",
       label: "Saved",
     },
-    {
-      imgURL: "/assets/icons/chat.svg",
-      route: "/chat",
-      label: "Chats",
-    },
+    // {
+    //   imgURL: "/assets/icons/chat.svg",
+    //   route: "/chat",
+    //   label: "Chats",
+    // },
     {
       imgURL: "/assets/icons/gallery-add.svg",
       route: "/create-post",
       label: "Create Post",
     },
-    {
-      imgURL: "/assets/icons/setting.svg",
-      route: "/setting",
-      label: "Settings",
-    },
+    // {
+    //   imgURL: "/assets/icons/setting.svg",
+    //   route: "/setting",
+    //   label: "Settings",
+    // },
   ];
   
   export const bottombarLinks = [
