@@ -2,8 +2,9 @@ import TopCreator from '@/components/shared/TopCreator'
 import React from 'react'
 import { useGetUsers } from '@/lib/react-query/queriesAndMutations'
 import { Models } from 'appwrite'
-import UserCard from '@/components/shared/userCard'
 import { Loader } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Button } from '@/components/ui'
 
 const AllUsers = () => {
   const { data: creators, isFetching: isUserLoading, isError: isErrorCreators} = useGetUsers();
@@ -22,10 +23,29 @@ const AllUsers = () => {
               isUserLoading && !creators ? (
                 <Loader />
               ) : (
-                <div className="grid 2xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {
                     creators?.documents.map((creator: Models.Document) => (
-                      <UserCard user={creator} key={creator.name} />
+                      <Link to={`/profile/${creator.$id}`} className="creator-card">
+                      <img
+                        src={creator.imageUrl || "/assets/icons/profile-placeholder.svg"}
+                        alt="creator"
+                        className="rounded-full w-14 h-14"
+                      />
+                
+                      <div className="flex-center flex-col gap-1">
+                        <p className="base-medium text-light-1 text-center line-clamp-1">
+                          {creator.name}
+                        </p>
+                        <p className="small-regular text-light-3 text-center line-clamp-1">
+                          @{creator.username}
+                        </p>
+                      </div>
+                
+                      <Button type="button" size="sm" className="shad-button_primary px-5">
+                        Follow
+                      </Button>
+                    </Link>
                     ))
                   }
                 </div>
