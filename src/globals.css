@@ -245,7 +245,7 @@
     @apply flex-center flex-col gap-4 border border-dark-4 rounded-[20px] px-5 py-8;
   }
   .creator-card {
-    @apply flex-center flex-col gap-4 border border-dark-4 rounded-[20px] px-5 py-8;
+    @apply flex-center flex-col gap-4 border border-dark-4 rounded-[20px] px-20 py-12;
   }
 }
 
