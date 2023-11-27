@@ -10,12 +10,13 @@ import { useInView } from "react-intersection-observer"
 
 
 const Home = () => {
-  // const { ref, inView } = useInView()
-  // const { data: posts, isFetching: isPostLoading, isError: isErrorPosts } = useGetPosts()
+  const { ref, inView } = useInView()
+  
+  const { data: posts, isFetching: isPostLoading, isError: isErrorPosts, fetchNextPage, hasNextPage } = useGetPosts()
 
-  // useEffect(() => {
-  //   if (inView && !searchValue) fetchNextPage()
-  // }, [inView, searchValue])
+  useEffect(() => {
+    if (inView && !searchValue) fetchNextPage()
+  }, [inView, searchValue])
 
   return (
     <div className="flex flex-1">
@@ -68,8 +69,14 @@ const Home = () => {
             </ul>
           )}
         </div>
+        {hasNextPage && !searchValue && (
+        <div ref={ref} className="mt-10">
+          <Loader />
+        </div>
+      )}
       </div>
       <TopCreator />
+      
     </div>
   )
 }
