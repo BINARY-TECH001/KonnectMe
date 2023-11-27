@@ -4,11 +4,18 @@ import Stories from "@/components/shared/Stories"
 import TopCreator from "@/components/shared/TopCreator"
 import { useGetPosts, useGetUsers } from "@/lib/react-query/queriesAndMutations"
 import { Models } from "appwrite"
+import { useEffect } from "react"
+import { useInView } from "react-intersection-observer"
 
 
 
 const Home = () => {
-  const { data: posts, isFetching: isPostLoading, isError: isErrorPosts } = useGetPosts()
+  // const { ref, inView } = useInView()
+  // const { data: posts, isFetching: isPostLoading, isError: isErrorPosts } = useGetPosts()
+
+  // useEffect(() => {
+  //   if (inView && !searchValue) fetchNextPage()
+  // }, [inView, searchValue])
 
   return (
     <div className="flex flex-1">
