@@ -2,9 +2,9 @@ import TopCreator from '@/components/shared/TopCreator'
 import React from 'react'
 import { useGetUsers } from '@/lib/react-query/queriesAndMutations'
 import { Models } from 'appwrite'
-import { Loader } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui'
+import Loader from '@/components/shared/Loader'
 
 const AllUsers = () => {
   const { data: creators, isFetching: isUserLoading, isError: isErrorCreators} = useGetUsers();
